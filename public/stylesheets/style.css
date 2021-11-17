@@ -1,12 +1,22 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00b7ff;
+	color: #00b7ff;
 }
 
 h1 {
-  color: 15px;
+	color: 15px;
+}
+#places-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.place {
+	border: 1px solid black;
+	padding: 20px;
+	width: auto;
 }
