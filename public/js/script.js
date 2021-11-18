@@ -41,21 +41,29 @@ document.addEventListener(
 )
 
 function populateRecord(place, targetHTML) {
-	let { name, type, id } = place
-	console.log('in single pop: ', name, type)
-	let toPriint = `<div onClick=getEditForm.bind(${id},${name},${type}) id=${id} class="place"><div>NAME : ${name}</div><div> Type : ${type}</div></div>`
+	let { name, type, _id: id } = place
+	console.log('in single pop: ', name, type, id)
+	console.log(place)
 
-	targetHTML.innerHTML += toPriint
+	let div = document.createElement('div', { onClick: getEditForm(), id: id, class: 'place' })
+	div.setAttribute('class', 'place')
+	div.setAttribute('onclick', `getEditForm("${id}","${name}","${type}")`)
+	div.innerHTML = `<div>NAME : ${name}</div><div> Type : ${type}</div>`
+	console.log('Single Div : ', div)
+	// let toPriint = `<div ${clickHandler}() id=${id} class="place"><div>NAME : ${name}</div><div> Type : ${type}</div></div>`
+	let toPrint = div
+
+	targetHTML.appendChild(toPrint)
 }
 async function loadAll() {
 	return await _axios.get('/places')
 }
 
 function populateAll(data) {
-	console.log('in pop', data[0])
+	// console.log('in pop', data[0])
 	let container = document.getElementById('places-container')
 	for (let i = 0; i < data.length; i++) {
-		console.log('data', data)
+		// console.log('data', data)
 		populateRecord(data[i], container)
 	}
 }
